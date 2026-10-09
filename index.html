@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لمسة | LAMSA - تطوير ويب وتطبيقات وهدايا ودعوات إلكترونية</title>
+<meta name="description" content="لمسة | LAMSA - تطوير مواقع وتطبيقات ويب، منيو إلكتروني، هدايا ودعوات مناسبات إلكترونية.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("lamsa_theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}try{if(localStorage.getItem("lamsa_session"))document.documentElement.classList.add("authed")}catch(e){}</script>
+<style>
+:root{
+  --bg:#070b1f; --bg2:#0f1740; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.12);
+  --txt:#eef1ff; --mut:#9aa4d6; --a:#5b6bff; --b:#9b4dff; --c:#38c8ff; --gold:#ffc83d; --ok:#25d366; --red:#ff5d6c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:radial-gradient(1200px 600px at 80% -10%,#1d2a7a55,transparent),var(--bg);color:var(--txt);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(1100px,92%);margin:auto}
+.grad{background:linear-gradient(90deg,var(--a),var(--b),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:700 1rem 'Cairo';cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--a)}
+.btn.primary{background:linear-gradient(90deg,var(--a),var(--b));border:none;box-shadow:0 8px 30px #5b6bff55}
+.btn.wa{background:var(--ok);border:none;color:#06260f}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:#070b1fcc;border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:800 1.1rem 'Orbitron';letter-spacing:1px;direction:ltr}
+.logo small{display:block;font:600 .55rem 'Orbitron';letter-spacing:4px;color:var(--mut)}
+nav ul{display:flex;gap:22px;list-style:none}
+nav a{color:var(--mut);font-weight:600;font-size:.95rem;transition:.2s}
+nav a:hover{color:#fff}
+.menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.7rem;cursor:pointer}
+@media(max-width:760px){
+  .menu-btn{display:block}
+  nav ul{position:absolute;top:68px;inset-inline:0;flex-direction:column;background:#0b1130;padding:18px 24px;display:none;border-bottom:1px solid var(--line)}
+  nav ul.open{display:flex}
+}
+
+/* HERO */
+.hero{padding:50px 0 50px;text-align:center;position:relative}
+.hero .tag{display:inline-block;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--c);font-size:.85rem;background:var(--card);margin-bottom:22px}
+.hero h1{font:900 clamp(2.2rem,6vw,4.2rem)/1.2 'Cairo'}
+.hero .brand{display:block;font:800 clamp(1.6rem,5vw,3rem) 'Orbitron';direction:ltr;margin-top:6px}
+.hero p{max-width:640px;margin:20px auto 32px;color:var(--mut);font-size:1.1rem}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* SECTIONS */
+section{padding:70px 0}
+.sec-title{text-align:center;margin-bottom:42px}
+.sec-title h2{font:900 clamp(1.7rem,4vw,2.4rem) 'Cairo'}
+.sec-title p{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:#5b6bff88;box-shadow:0 18px 40px #0006}
+.ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem;background:linear-gradient(135deg,#5b6bff33,#9b4dff33);border:1px solid var(--line);margin-bottom:14px}
+.card h3{margin-bottom:6px}
+.card p{color:var(--mut);font-size:.95rem}
+
+/* TEAM SECTION */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.team-card{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px 20px;transition:.3s}
+.team-card:hover{transform:translateY(-6px);border-color:var(--a);box-shadow:0 18px 40px #5b6bff22}
+.team-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font:800 1.8rem 'Orbitron';color:#fff;border:2px solid var(--line)}
+.team-card h3{font:800 1.2rem 'Orbitron',sans-serif;color:var(--txt);margin-bottom:4px}
+.team-card .role{color:var(--c);font-size:.85rem;font-weight:700}
+
+/* PROJECTS */
+.proj{display:flex;flex-direction:column;gap:14px;overflow:hidden;padding:0}
+.proj .frame{height:210px;border-bottom:1px solid var(--line);position:relative;background:#0b1130;overflow:hidden}
+.proj iframe{width:200%;height:200%;transform:scale(.5);transform-origin:0 0;border:0;pointer-events:none;background:#fff}
+.proj .body{padding:0 24px 24px}
+.proj .body .btn{margin-top:12px;padding:10px 20px;font-size:.9rem}
+
+/* ORDER WIZARD */
+.wizard-wrap{display:flex;justify-content:center}
+.wizard{width:min(520px,100%);background:linear-gradient(160deg,#1b2766aa,#0f1740cc);border:1px solid var(--line);border-radius:32px;padding:22px;box-shadow:0 30px 80px #0008}
+.w-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.dots{display:flex;gap:8px}
+.dots i{width:12px;height:12px;border-radius:50%;background:#3a4272;transition:.3s}
+.dots i.on{background:var(--a);box-shadow:0 0 0 5px #5b6bff33}
+.dots i.done{background:var(--ok)}
+.clear{background:#ff5d6c22;border:1px solid #ff5d6c66;color:#ff9aa5;padding:8px 16px;border-radius:14px;font:700 .9rem 'Cairo';cursor:pointer}
+.w-title{font:800 1.3rem 'Cairo';margin-bottom:12px}
+.bar{height:10px;border-radius:99px;background:#2a3166;overflow:hidden;margin-bottom:18px}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b),var(--c));transition:.4s}
+.step{display:none;animation:fade .35s}
+.step.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{display:flex;align-items:center;gap:10px;padding:12px;border-radius:20px;background:#ffffff0d;border:1px solid var(--line);color:var(--txt);font:700 .95rem 'Cairo';cursor:pointer;text-align:start;transition:.2s}
+.opt:hover{border-color:var(--a)}
+.opt.sel{border-color:var(--a);background:#5b6bff33;box-shadow:0 0 0 2px #5b6bff66}
+.opt .i{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:1.2rem;background:#ffffff12;border:1px solid var(--line);flex:none}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:.85rem;color:var(--mut);margin-bottom:4px}
+.field input,.field textarea,.field select{width:100%;padding:12px 14px;border-radius:14px;background:#0a1030;border:1px solid var(--line);color:var(--txt);font:600 .95rem 'Cairo';outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--a)}
+.w-nav{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.w-nav .btn{width:100%;border-radius:20px}
+.err{color:var(--red);font-size:.85rem;min-height:1.2em;margin-top:6px}
+.done-box{text-align:center;padding:10px 0}
+.check{width:100px;height:100px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:3rem;color:var(--ok);background:#1f4a45;border:2px solid #25d36666}
+
+/* REVIEWS */
+.rate-box{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;align-items:start}
+@media(max-width:800px){.rate-box{grid-template-columns:1fr}}
+.avg{text-align:center}
+.avg b{font:800 3.4rem 'Orbitron'}
+.stars{color:var(--gold);letter-spacing:3px;font-size:1.3rem;direction:ltr}
+.star-input{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px;direction:ltr}
+.star-input input{display:none}
+.star-input label{font-size:2rem;color:#46507f;cursor:pointer;transition:.15s}
+.star-input input:checked~label,.star-input label:hover,.star-input label:hover~label{color:var(--gold)}
+.review{padding:16px;border-radius:18px;background:#ffffff0a;border:1px solid var(--line);margin-bottom:12px}
+.review .h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
+.review small{color:var(--mut)}
+.empty{color:var(--mut);text-align:center;padding:20px}
+
+/* CONTACT / FOOTER */
+.contact{text-align:center}
+.contact .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+footer{border-top:1px solid var(--line);padding:26px 0 90px;text-align:center;color:var(--mut);font-size:.9rem}
+
+/* USERS COUNTER */
+.users-badge{position:fixed;bottom:16px;inset-inline-start:16px;z-index:60;display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#0b1130ee;border:1px solid var(--line);font-size:.8rem;backdrop-filter:blur(10px);box-shadow:0 8px 24px #0007}
+.users-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 #25d366aa;animation:pulse 1.8s infinite}
+.users-badge b{font-family:'Orbitron';color:var(--c)}
+@keyframes pulse{70%{box-shadow:0 0 0 9px #25d36600}100%{box-shadow:0 0 0 0 #25d36600}}
+
+/* HERO & LOGO */
+.logo{display:flex;align-items:center;gap:10px}
+.logo-text{line-height:1.1}
+.nav-logo svg{width:46px;height:auto;display:block}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero-text{text-align:start}
+.hero-text p{margin:16px 0 28px;max-width:560px}
+.hero-text .cta{justify-content:flex-start}
+.hero-logo{margin-bottom:10px;direction:ltr;display:flex;justify-content:flex-start}
+.big-logo svg{width:min(250px,60vw);height:auto;display:block;animation:floaty 5s ease-in-out infinite;filter:drop-shadow(0 0 18px #5b6bffaa)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.shimmer{background:linear-gradient(100deg,#7d8bff 0%,#ffffff 25%,#38c8ff 50%,#9b4dff 75%,#7d8bff 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.hero-visual{display:flex;justify-content:center}
+.dev-frame{position:relative;width:min(400px,86%);aspect-ratio:3/4;border-radius:32px;padding:3px;background:linear-gradient(135deg,var(--a),var(--b),var(--c),var(--a));background-size:300% 300%;animation:borderflow 6s linear infinite;box-shadow:0 30px 80px #0009,0 0 60px #5b6bff44}
+@keyframes borderflow{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.chip{position:absolute;padding:8px 14px;border-radius:999px;font:700 .8rem 'Orbitron',sans-serif;direction:ltr;background:#0b1130dd;border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 8px 24px #0008;animation:floaty 4s ease-in-out infinite;z-index:3}
+.chip.c1{top:8%;inset-inline-start:-14%;animation-delay:0s}
+.chip.c2{top:34%;inset-inline-end:-14%;animation-delay:.8s}
+.chip.c3{bottom:26%;inset-inline-start:-12%;animation-delay:1.6s}
+.chip.c4{bottom:7%;inset-inline-end:-10%;animation-delay:2.4s}
+
+/* LOGO INSIDE HERO FRAME (replaces the old photo) */
+.frame-logo{position:relative;width:100%;height:100%;border-radius:29px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 38%,#26359b 0%,#101a52 45%,#070b1f 80%);direction:ltr}
+.frame-logo::before,.frame-logo::after{content:"";position:absolute;left:50%;top:42%;width:60%;aspect-ratio:1;border-radius:50%;border:2px solid #38c8ff55;transform:translate(-50%,-50%) scale(.6);opacity:0;animation:ring 3.6s ease-out infinite}
+.frame-logo::after{animation-delay:1.8s;border-color:#9b4dff66}
+@keyframes ring{0%{transform:translate(-50%,-50%) scale(.55);opacity:.9}100%{transform:translate(-50%,-50%) scale(1.7);opacity:0}}
+.frame-logo .hero-logo-anim{position:relative;z-index:2;width:72%;display:block}
+.frame-logo .hero-logo-anim svg{width:100%;height:auto;display:block;animation:floaty 5s ease-in-out infinite,glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 10px #38c8ff88)}50%{filter:drop-shadow(0 0 26px #9b4dffcc)}}
+.frame-name{position:relative;z-index:2;font:800 clamp(1.3rem,4vw,1.9rem) 'Orbitron',sans-serif;letter-spacing:6px;text-align:center}
+.frame-name small{display:block;font:700 .95rem 'Cairo',sans-serif;letter-spacing:2px;color:var(--mut);-webkit-text-fill-color:var(--mut)}
+
+/* ANIMATED LAMSA LOGO */
+.lamsa-l-path{
+  stroke:#8fe3ff;stroke-width:3;
+  stroke-dasharray:700;stroke-dashoffset:700;fill-opacity:0;
+  animation:drawL 5s ease-in-out infinite;
+}
+.lamsa-brackets{animation:pulseBrackets 2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.lamsa-br-l{animation:slideL 2s ease-in-out infinite}
+.lamsa-br-r{animation:slideR 2s ease-in-out infinite}
+@keyframes drawL{
+  0%{stroke-dashoffset:700;fill-opacity:0}
+  45%{stroke-dashoffset:0;fill-opacity:0}
+  70%{stroke-dashoffset:0;fill-opacity:1}
+  90%{stroke-dashoffset:0;fill-opacity:1}
+  100%{stroke-dashoffset:-700;fill-opacity:0}
+}
+@keyframes pulseBrackets{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.12);opacity:1}}
+@keyframes slideL{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+@keyframes slideR{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-text{text-align:center}
+  .hero-text .cta,.hero-logo{justify-content:center}
+  .hero-text p{margin-inline:auto}
+  .chip.c1{inset-inline-start:-4%}.chip.c2{inset-inline-end:-4%}.chip.c3{inset-inline-start:-3%}.chip.c4{inset-inline-end:-3%}
+}
+
+/* OWNER PANEL */
+.nav-tools{display:flex;align-items:center;gap:8px}
+.admin-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:#fff;font-size:1.1rem;cursor:pointer;transition:.2s}
+.admin-btn:hover{border-color:var(--a);transform:translateY(-1px)}
+#projGrid{grid-template-columns:repeat(auto-fit,minmax(300px,560px));justify-content:center}
+.ad-overlay{position:fixed;inset:0;z-index:200;background:#02040dcc;backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:14px}
+.ad-overlay[hidden],#adLogin[hidden],#adPanel[hidden]{display:none}
+.ad-box{position:relative;width:min(580px,100%);max-height:90vh;overflow:auto;background:linear-gradient(160deg,#1b2766,#0f1740);border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 30px 90px #000}
+.ad-x{position:absolute;top:14px;inset-inline-start:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#ffffff10;color:#fff;cursor:pointer}
+.ad-box h3{font-size:1.25rem;margin-bottom:10px;padding-inline-start:40px}
+.ad-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 16px}
+.ad-tabs button{padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:#ffffff0d;color:var(--mut);font:700 .85rem 'Cairo';cursor:pointer}
+.ad-tabs button.on{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border-color:transparent}
+.ad-row{padding:12px;border-radius:16px;background:#ffffff0a;border:1px solid var(--line);margin-bottom:10px}
+.ad-row .field{margin-bottom:8px}
+.ad-chk{display:flex;align-items:center;gap:10px;padding:8px 0;color:var(--txt);font-weight:600}
+.ad-chk input{width:18px;height:18px;accent-color:var(--a)}
+.ad-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ad-actions .btn{padding:10px 18px;font-size:.9rem}
+.btn.danger{border-color:#ff5d6c88;color:#ff9aa5}
+.ad-note{color:var(--mut);font-size:.82rem;margin:8px 0}
+.ad-toast{min-height:1.3em;margin-top:10px;color:var(--ok);font-weight:700;font-size:.9rem}
+
+/* CLOCK & THEME */
+body,header{transition:background-color .35s,color .35s}
+.clock{display:flex;flex-direction:column;align-items:center;line-height:1.15;padding:4px 12px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.clock-time{font:700 .85rem 'Orbitron',sans-serif;letter-spacing:.5px;color:var(--c);font-variant-numeric:tabular-nums}
+.clock-date{font:600 .66rem 'Cairo',sans-serif;color:var(--mut)}
+.theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:1.15rem;cursor:pointer;transition:.25s;display:grid;place-items:center;overflow:hidden}
+.theme-btn:hover{border-color:var(--a);transform:translateY(-1px)}
+.theme-btn .ti{display:block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+:root[data-theme="light"] .theme-btn .ti{transform:rotate(360deg)}
+@media(max-width:560px){
+  .nav-tools{gap:5px}
+  .clock{padding:3px 8px}
+  .clock-time{font-size:.68rem;letter-spacing:0}
+  .clock-date{display:none}
+  .theme-btn,.admin-btn{width:34px;height:34px;font-size:1rem}
+  .menu-btn{font-size:1.45rem}
+}
+@media(max-width:380px){.clock{display:none}}
+
+/* LIGHT THEME */
+:root[data-theme="light"]{
+  --bg:#f3f5ff; --bg2:#e6eaff; --card:rgba(255,255,255,.78); --line:rgba(30,40,110,.16);
+  --txt:#141a3d; --mut:#555f8c; --c:#0a86bd; --gold:#f0a200; --red:#d63a4c;
+}
+:root[data-theme="light"] body{background:radial-gradient(1200px 600px at 80% -10%,#b9c4ff77,transparent),radial-gradient(900px 500px at 0% 60%,#d9c8ff55,transparent),var(--bg)}
+:root[data-theme="light"] header{background:#f3f5ffd9}
+:root[data-theme="light"] nav a:hover{color:var(--txt)}
+:root[data-theme="light"] .menu-btn,:root[data-theme="light"] .admin-btn{color:var(--txt)}
+:root[data-theme="light"] .btn.primary{color:#fff;box-shadow:0 8px 26px #5b6bff55}
+:root[data-theme="light"] .hero .tag{color:#0a7fb0}
+:root[data-theme="light"] .shimmer{background-image:linear-gradient(100deg,#3340e6 0%,#8a3dff 30%,#0a8fd0 55%,#3340e6 100%);background-size:250% 100%}
+:root[data-theme="light"] .card:hover,:root[data-theme="light"] .team-card:hover{box-shadow:0 18px 40px #1a237a26}
+:root[data-theme="light"] .proj .frame{background:#e6eaff}
+:root[data-theme="light"] .wizard{background:linear-gradient(160deg,#ffffffee,#e9edffee);box-shadow:0 30px 70px #1a237a2e}
+:root[data-theme="light"] .dots i{background:#c3cae8}
+:root[data-theme="light"] .dots i.on{background:var(--a)}
+:root[data-theme="light"] .dots i.done{background:var(--ok)}
+:root[data-theme="light"] .bar{background:#d5daf3}
+:root[data-theme="light"] .opt{background:#ffffffb8}
+:root[data-theme="light"] .opt.sel{background:#5b6bff26}
+:root[data-theme="light"] .opt .i{background:#eef1ff}
+:root[data-theme="light"] .field input,:root[data-theme="light"] .field textarea,:root[data-theme="light"] .field select{background:#fff}
+:root[data-theme="light"] .clear,:root[data-theme="light"] .btn.danger{color:#d63a4c;border-color:#d63a4c77}
+:root[data-theme="light"] .check{background:#d9f6e6;border-color:#25d36699;color:#12a150}
+:root[data-theme="light"] .star-input label{color:#c3cae8}
+:root[data-theme="light"] .star-input input:checked~label,:root[data-theme="light"] .star-input label:hover,:root[data-theme="light"] .star-input label:hover~label{color:var(--gold)}
+:root[data-theme="light"] .review{background:#ffffffb8}
+:root[data-theme="light"] .users-badge{background:#ffffffee;box-shadow:0 8px 24px #1a237a2e}
+:root[data-theme="light"] .chip{background:#ffffffe6;box-shadow:0 8px 24px #1a237a30}
+:root[data-theme="light"] .dev-frame{box-shadow:0 26px 60px #1a237a45,0 0 50px #5b6bff33}
+:root[data-theme="light"] .big-logo svg{filter:drop-shadow(0 4px 14px #5b6bff88)}
+:root[data-theme="light"] .ad-overlay{background:#dfe4ffcc}
+:root[data-theme="light"] .ad-box{background:linear-gradient(160deg,#ffffff,#eef1ff);box-shadow:0 30px 80px #1a237a55}
+:root[data-theme="light"] .ad-x{background:#00000010;color:var(--txt)}
+:root[data-theme="light"] .ad-tabs button{background:#ffffffb8}
+:root[data-theme="light"] .ad-tabs button.on{color:#fff;background:linear-gradient(90deg,var(--a),var(--b));border-color:transparent}
+:root[data-theme="light"] .ad-row{background:#ffffffa8}
+:root[data-theme="light"] .ad-chk,:root[data-theme="light"] .ad-box h3{color:var(--txt)}
+@media(max-width:760px){:root[data-theme="light"] nav ul{background:#fff}}
+
+/* LOGIN GATE */
+.gate{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto;background:radial-gradient(900px 500px at 80% -10%,#1d2a7a88,transparent),radial-gradient(700px 500px at 0% 100%,#9b4dff33,transparent),var(--bg)}
+html.authed .gate{display:none}
+html:not(.authed){overflow:hidden}
+.gate-box{width:min(420px,100%);text-align:center;background:linear-gradient(160deg,#1b2766aa,#0f1740dd);border:1px solid var(--line);border-radius:32px;padding:28px 24px 18px;box-shadow:0 30px 80px #0008;position:relative;z-index:1}
+.gate-logo{width:110px;margin:0 auto 6px}
+.gate-logo svg{width:100%;height:auto;display:block;animation:floaty 5s ease-in-out infinite,glow 3s ease-in-out infinite}
+.gate-box h2{font:900 1.5rem 'Cairo'}
+.gate-box .sub{color:var(--mut);font-size:.92rem;margin:2px 0 18px}
+.gate-box .field{text-align:start}
+.gate-box .btn{width:100%;border-radius:20px;margin-top:6px}
+.owner-link{margin-top:18px;padding-top:12px;border-top:1px solid var(--line)}
+.owner-link button.mini{background:none;border:0;color:var(--mut);font:600 .78rem 'Cairo';cursor:pointer;opacity:.75;padding:4px 10px;border-radius:10px}
+.owner-link button.mini:hover{opacity:1;color:var(--txt)}
+.owner-row{display:none;gap:8px;margin-top:8px}
+.owner-row.open{display:flex}
+.owner-row input{flex:1;min-width:0;padding:10px 12px;border-radius:12px;background:#0a1030;border:1px solid var(--line);color:var(--txt);font:600 .9rem 'Cairo';outline:none}
+.owner-row .btn{width:auto;margin:0;padding:8px 16px;font-size:.85rem;border-radius:12px}
+:root[data-theme="light"] .gate-box{background:linear-gradient(160deg,#ffffffee,#e9edffee);box-shadow:0 30px 70px #1a237a2e}
+:root[data-theme="light"] .owner-row input{background:#fff}
+</style>
+</head>
+<body>
+
+<div class="gate" id="loginGate" role="dialog" aria-modal="true" aria-label="تسجيل الدخول">
+  <div class="gate-box">
+    <div class="gate-logo logo-slot"></div>
+    <h2>أهلاً بك في <span class="grad">لمسة</span></h2>
+    <p class="sub">سجّل دخولك بالإيميل والاسم لتتصفح الموقع</p>
+    <form id="loginForm" novalidate>
+      <div class="field"><label>البريد الإلكتروني</label><input id="lgEmail" type="email" inputmode="email" autocomplete="email" dir="ltr" placeholder="name@example.com"></div>
+      <div class="field"><label>id</label><input id="lgName" maxlength="40" autocomplete="name" placeholder="....."></div>
+      <div class="err" id="lgErr"></div>
+      <button class="btn primary" type="submit">دخول</button>
+    </form>
+    <div class="owner-link">
+      <button class="mini" id="ownerToggle" type="button">🔑 دخول أصحاب الشركة</button>
+      <div class="owner-row" id="ownerRow">
+        <input id="ownPass" type="password" inputmode="numeric" autocomplete="off" placeholder=".....">
+        <button class="btn primary" id="ownEnter" type="button">دخول</button>
+      </div>
+      <div class="err" id="ownErr"></div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="logo"><span class="logo-slot nav-logo"></span><span class="logo-text">LAMSA<small>لمسة</small></span></a>
+    <nav><ul id="menu">
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#team">فريق العمل</a></li>
+      <li><a href="#projects">أعمالنا</a></li>
+      <li><a href="#order">اطلب الآن</a></li>
+      <li><a href="#reviews">التقييمات</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul></nav>
+    <div class="nav-tools">
+      <div class="clock" id="clock" dir="ltr" title="الوقت الحالي"><span class="clock-time" id="clockTime">--:--:--</span><span class="clock-date" id="clockDate"></span></div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="تغيير السمة" title="سمة صباحية / مسائية"><span class="ti">🌙</span></button>
+      <button class="admin-btn" id="adminBtn" type="button" aria-label="لوحة المالك" title="لوحة المالك">🔐</button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="القائمة">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero container">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-logo"><span class="logo-slot big-logo"></span></div>
+      <span class="tag">⚡ تطوير رقمي • مواقع • تطبيقات • هدايا ودعوات</span>
+      <h1>نحوّل فكرتك إلى <span class="grad">تجربة رقمية</span> مميزة
+        <span class="brand shimmer">LAMSA | لمسة</span></h1>
+      <p>فريق متخصص في تطوير البرمجيات والتطبيقات. نصمم ونبرمج مواقع، تطبيقات ويب، منيو إلكتروني، هدايا ودعوات مناسبات إلكترونية بتصميم احترافي وسريع.</p>
+      <div class="cta">
+        <a href="#order" class="btn primary">🎁 اطلب خدمتك الآن</a>
+        <a href="#projects" class="btn">شاهد أعمالنا</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dev-frame">
+        <div class="frame-logo">
+          <span class="logo-slot hero-logo-anim"></span>
+          <div class="frame-name shimmer">LAMSA<small>لمسة</small></div>
+        </div>
+        <span class="chip c1">💻 Web</span>
+        <span class="chip c2">📱 Apps</span>
+        <span class="chip c3">🎁 E-Gifts</span>
+        <span class="chip c4">💌 Invitations</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="services"><div class="container">
+  <div class="sec-title"><h2>خدماتنا</h2><p>كل ما تحتاجه لوجودك الرقمي في مكان واحد</p></div>
+  <div class="grid">
+    <div class="card"><div class="ico">🌐</div><h3>مواقع الويب</h3><p>مواقع تعريفية، متاجر، ومعارض أعمال سريعة ومتجاوبة مع كل الشاشات.</p></div>
+    <div class="card"><div class="ico">📱</div><h3>تطبيقات الويب</h3><p>تطبيقات ويب تفاعلية (PWA) تعمل كالتطبيق على الموبايل.</p></div>
+    <div class="card"><div class="ico">🍽️</div><h3>المنيو الإلكتروني</h3><p>منيو بـ QR للمطاعم والكافيهات، سهل التحديث وبتصميم جذاب.</p></div>
+    <div class="card"><div class="ico">💌</div><h3>الدعوات الإلكترونية</h3><p>دعوات زفاف، خطوبة، أعياد ميلاد وتخرج برابط أو QR.</p></div>
+    <div class="card"><div class="ico">🎁</div><h3>الهدايا الإلكترونية</h3><p>هدايا رقمية مؤثرة لكل المناسبات: ذكرى، رمضان، الأعياد، مفاجآت.</p></div>
+    <div class="card"><div class="ico">🛠️</div><h3>حلول مخصصة</h3><p>عندك فكرة مختلفة؟ نبنيها لك من الصفر حسب احتياجك.</p></div>
+  </div>
+</div></section>
+
+<!-- TEAM SECTION -->
+<section id="team"><div class="container">
+  <div class="sec-title"><h2>فريق العمل</h2><p>نخبة من المطورين والمهندسين لتقديم أفضل الحلول البرمجية</p></div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">M</div>
+      <h3>M-7egaz</h3>
+      <span class="role">Full-Stack Developer</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">A</div>
+      <h3>Ahmed-Abdallah</h3>
+      <span class="role">Full-Stack Developer</span>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">M</div>
+      <h3>Mahmoud-Amr</h3>
+      <span class="role">Full-Stack Developer</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="container">
+  <div class="sec-title"><h2>أعمالنا</h2><p>مشاريع منفذة ومنشورة على الإنترنت</p></div>
+  <div class="grid" id="projGrid"></div>
+</div></section>
+
+<section id="order"><div class="container">
+  <div class="sec-title"><h2>اطلب خدمتك الآن</h2><p>اختار الخدمة وكمّل الخطوات وابعت الطلب على واتساب</p></div>
+  <div class="wizard-wrap">
+    <div class="wizard" id="wizard">
+      <div class="w-top">
+        <button class="clear" id="resetBtn" type="button">↺ مسح</button>
+        <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="w-title" id="wTitle">✨ اطلب خدمتك الآن</div>
+      <div class="bar"><div id="bar"></div></div>
+
+      <div class="step show" data-step="0">
+        <div class="field"><label>⭐ اختار الخدمة</label></div>
+        <div class="opts" id="svcOpts"></div>
+      </div>
+      <div class="step" data-step="1">
+        <div class="field"><label>⭐ محتاج التسليم إزاي؟</label></div>
+        <div class="opts" id="delOpts"></div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="field"><label>الاسم</label><input id="fName" placeholder="اسمك"></div>
+        <div class="field"><label>رقم الموبايل</label><input id="fPhone" type="tel" inputmode="tel" placeholder="01xxxxxxxxx"></div>
+        <div class="field"><label>الموعد المطلوب (اختياري)</label><input id="fDate" type="date"></div>
+        <div class="field"><label>تفاصيل الطلب</label><textarea id="fNotes" rows="3" placeholder="اكتب أي تفاصيل: ألوان، أسماء، نص، أفكار..."></textarea></div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="done-box">
+          <div class="check">✓</div>
+          <h3>تم تجهيز طلبك!</h3>
+          <p style="color:var(--mut);margin:6px 0 12px">اضغط الزر لإرسال الطلب عبر واتساب.</p>
+          <div class="review" id="summary" style="text-align:start"></div>
+        </div>
+      </div>
+
+      <div class="err" id="err"></div>
+      <div class="w-nav" id="wNav">
+        <a class="btn wa" id="waBtn" target="_blank" rel="noopener" style="display:none">إرسال الطلب عبر واتساب 💬</a>
+        <button class="btn primary" id="nextBtn" type="button">التالي</button>
+        <button class="btn" id="backBtn" type="button">رجوع</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="reviews"><div class="container">
+  <div class="sec-title"><h2>تقييمات العملاء</h2><p>رأيك يهمنا، قيّم تجربتك مع موقعنا (التقييمات تظهر للجميع)</p></div>
+  <div class="rate-box">
+    <div class="card">
+      <div class="avg"><b id="avgNum">0.0</b>
+        <div class="stars" id="avgStars">☆☆☆☆☆</div>
+        <small style="color:var(--mut)" id="avgCount">جاري تحميل التقييمات...</small>
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+      <form id="rateForm">
+        <div class="field"><label>تقييمك</label>
+          <div class="star-input">
+            <input type="radio" name="star" id="s5" value="5"><label for="s5">★</label>
+            <input type="radio" name="star" id="s4" value="4"><label for="s4">★</label>
+            <input type="radio" name="star" id="s3" value="3"><label for="s3">★</label>
+            <input type="radio" name="star" id="s2" value="2"><label for="s2">★</label>
+            <input type="radio" name="star" id="s1" value="1"><label for="s1">★</label>
+          </div>
+        </div>
+        <div class="field"><label>اسمك</label><input id="rName" maxlength="30" placeholder="الاسم"></div>
+        <div class="field"><label>تعليقك</label><textarea id="rText" rows="3" maxlength="200" placeholder="اكتب رأيك..."></textarea></div>
+        <button class="btn primary" style="width:100%" id="rSubBtn" type="submit">إرسال التقييم ⭐</button>
+        <div class="err" id="rErr"></div>
+      </form>
+    </div>
+    <div id="reviewList"><div class="empty">جاري تحميل التقييمات العامة...</div></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="container contact">
+  <div class="sec-title"><h2>تواصل معنا</h2><p>جاهزين نبدأ مشروعك الآن</p></div>
+  <div class="row">
+    <a class="btn wa" id="waContact" target="_blank" rel="noopener">واتساب 💬</a>
+    <a class="btn" href="#order">اطلب من النموذج</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="container">© <span id="yr"></span> لمسة | LAMSA — جميع الحقوق محفوظة</div></footer>
+
+<div class="ad-overlay" id="adOverlay" hidden>
+  <div class="ad-box" role="dialog" aria-modal="true" aria-label="لوحة المالك">
+    <button class="ad-x" id="adClose" type="button" aria-label="إغلاق">✕</button>
+    <div id="adLogin">
+      <h3>🔐 لوحة المالك</h3>
+      <p style="color:var(--mut);margin:4px 0 14px">اكتب الرمز السري للدخول</p>
+      <div class="field"><input id="adPin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••"></div>
+      <div class="err" id="adErr"></div>
+      <button class="btn primary" id="adEnter" type="button" style="width:100%">دخول</button>
+    </div>
+    <div id="adPanel" hidden>
+      <h3>⚙️ لوحة التحكم</h3>
+      <div class="ad-tabs" id="adTabs">
+        <button type="button" data-tab="content" class="on">المحتوى</button>
+        <button type="button" data-tab="projects">المشاريع</button>
+        <button type="button" data-tab="clients">العملاء</button>
+        <button type="button" data-tab="reviews">التقييمات العامة</button>
+        <button type="button" data-tab="settings">الإعدادات</button>
+      </div>
+      <div id="adBody"></div>
+      <div class="ad-toast" id="adToast"></div>
+    </div>
+  </div>
+</div>
+
+<div class="users-badge" title="عدد مستخدمي الموقع"><span class="pulse"></span>👥 <b id="usersBadge">—</b> مستخدم</div>
+
+<script>
+let WHATSAPP_NUMBER = "201148592380";
+const BRAND = "LAMSA | لمسة";
+
+const $ = s => document.querySelector(s);
+const safeGet = (k,d) => { try{ const v = localStorage.getItem(k); return v?JSON.parse(v):d }catch(e){ return d } };
+const safeSet = (k,v) => { try{ localStorage.setItem(k,JSON.stringify(v)) }catch(e){} };
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+$('#yr').textContent = new Date().getFullYear();
+$('#menuBtn').onclick = () => $('#menu').classList.toggle('open');
+document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>$('#menu').classList.remove('open'));
+$('#waContact').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً '+BRAND+'، حابب أستفسر عن خدماتكم')}`;
+
+/* ===== ORDER WIZARD ===== */
+const services = [
+  ['🌐','موقع ويب'],['📱','تطبيق ويب'],['🍽️','منيو إلكتروني'],['💍','دعوة زفاف'],
+  ['💞','دعوة خطوبة'],['🎂','دعوة عيد ميلاد'],['🎓','دعوة تخرج'],['🎁','هدية إلكترونية'],
+  ['🛒','متجر إلكتروني'],['🧑‍💻','موقع بورتفوليو'],['⭐','مناسبة خاصة'],['🛠️','طلب مخصص']
+];
+const deliveries = [['🔗','لينك'],['📲','تطبيق'],['▦','QR']];
+const titles = ['✨ اطلب خدمتك الآن','🎁 محتاج التسليم إزاي؟','📝 بياناتك','✅ تم تجهيز طلبك!'];
+let step = 0, state = {service:null, delivery:null};
+
+function buildOpts(el, list, key){
+  el.innerHTML = '';
+  list.forEach(([i,t])=>{
+    const b = document.createElement('button');
+    b.type='button'; b.className='opt'; b.innerHTML=`<span class="i">${i}</span><span>${t}</span>`;
+    b.onclick = () => { state[key]=t; [...el.children].forEach(c=>c.classList.remove('sel')); b.classList.add('sel'); $('#err').textContent=''; };
+    el.appendChild(b);
+  });
+}
+buildOpts($('#svcOpts'), services, 'service');
+buildOpts($('#delOpts'), deliveries, 'delivery');
+
+function render(){
+  document.querySelectorAll('.step').forEach(s=>s.classList.toggle('show', +s.dataset.step===step));
+  const dots = [...$('#dots').children];
+  dots.forEach((d,i)=>{ d.className = i<step||step===3 ? 'done' : (i===step?'on':'') });
+  $('#bar').style.width = (step/3*100)+'%';
+  $('#wTitle').textContent = titles[step];
+  $('#backBtn').style.display = step===0?'none':'';
+  $('#nextBtn').style.display = step===3?'none':'';
+  $('#nextBtn').textContent = step===2 ? 'تجهيز الطلب' : 'التالي';
+  $('#waBtn').style.display = step===3?'':'none';
+  $('#err').textContent='';
+}
+function buildMessage(){
+  const n=$('#fName').value.trim(), p=$('#fPhone').value.trim(), d=$('#fDate').value, t=$('#fNotes').value.trim();
+  return [`طلب جديد من موقع ${BRAND}`,`الخدمة: ${state.service}`,`التسليم: ${state.delivery}`,`الاسم: ${n}`,`الموبايل: ${p}`,d?`الموعد: ${d}`:'',t?`التفاصيل: ${t}`:''].filter(Boolean).join('\n');
+}
+$('#nextBtn').onclick = () => {
+  const err = $('#err');
+  if(step===0 && !state.service){ err.textContent='اختار الخدمة الأول'; return }
+  if(step===1 && !state.delivery){ err.textContent='اختار طريقة التسليم'; return }
+  if(step===2){
+    if($('#fName').value.trim().length<2){ err.textContent='اكتب اسمك'; return }
+    if(!/^[+\d\s-]{8,16}$/.test($('#fPhone').value.trim())){ err.textContent='اكتب رقم موبايل صحيح'; return }
+    const msg = buildMessage();
+    $('#summary').innerHTML = esc(msg).replace(/\n/g,'<br>');
+    $('#waBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+  step++; render();
+};
+$('#backBtn').onclick = () => { if(step>0){ step--; render(); } };
+$('#resetBtn').onclick = () => {
+  state={service:null,delivery:null}; step=0;
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  ['#fName','#fPhone','#fDate','#fNotes'].forEach(s=>$(s).value='');
+  render();
+};
+render();
+
+/* ===== PUBLIC GLOBAL REVIEWS (JSONBin Cloud Sync) ===== */
+const BIN_ID = "66f43e1d3247307a7d8c6b41";
+const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+let reviews = [];
+
+function stars(n){ return '★'.repeat(n)+'☆'.repeat(5-n) }
+
+async function fetchPublicReviews(){
+  try{
+    const res = await fetch(API_URL + '/latest', {
+      headers: { "X-Bin-Meta": "false" }
+    });
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    reviews = Array.isArray(data.reviews) ? data.reviews : [];
+    renderReviews();
+  }catch(e){
+    reviews = safeGet('lamsa_reviews', []);
+    renderReviews();
+  }
+}
+
+async function savePublicReviews(newArr){
+  reviews = newArr;
+  renderReviews();
+  safeSet('lamsa_reviews', newArr);
+  try{
+    await fetch(API_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reviews: newArr })
+    });
+  }catch(e){ console.error('Cloud save failed, saved locally'); }
+}
+
+function renderReviews(){
+  const list = $('#reviewList');
+  if(!reviews.length){
+    list.innerHTML = '<div class="empty">كن أول من يقيّم تجربته مع لمسة ⭐</div>';
+    $('#avgNum').textContent='0.0'; $('#avgStars').textContent=stars(0);
+    $('#avgCount').textContent='لا توجد تقييمات بعد'; 
+    return;
+  }
+  const avg = reviews.reduce((a,r)=>a+r.stars,0)/reviews.length;
+  $('#avgNum').textContent = avg.toFixed(1);
+  $('#avgStars').textContent = stars(Math.round(avg));
+  $('#avgCount').textContent = `قام ${reviews.length} شخص بتقييم الموقع`;
+  list.innerHTML = reviews.slice().reverse().map(r=>`
+    <div class="review"><div class="h"><b>${esc(r.name)}</b><span class="stars" style="font-size:1rem">${stars(r.stars)}</span></div>
+    <p>${esc(r.text)}</p><small>${esc(r.date)}</small></div>`).join('');
+}
+
+$('#rateForm').onsubmit = async e => {
+  e.preventDefault();
+  const s = document.querySelector('input[name=star]:checked');
+  const name = $('#rName').value.trim(), text = $('#rText').value.trim();
+  if(!s){ $('#rErr').textContent='اختار عدد النجوم'; return }
+  if(name.length<2 || text.length<3){ $('#rErr').textContent='اكمل الاسم والتعليق'; return }
+  
+  const subBtn = $('#rSubBtn');
+  subBtn.disabled = true;
+  subBtn.textContent = 'جاري إرسال التقييم...';
+  
+  const updated = [...reviews, {stars:+s.value, name, text, date:new Date().toLocaleDateString('ar-EG')}];
+  await savePublicReviews(updated);
+  
+  e.target.reset(); $('#rErr').textContent='';
+  subBtn.disabled = false;
+  subBtn.textContent = 'إرسال التقييم ⭐';
+};
+fetchPublicReviews();
+
+/* ===== USERS COUNTER ===== */
+(async function(){
+  const NS='lamsa-systems', KEY='users';
+  const fmt = n => Number(n).toLocaleString('en-US');
+  const show = n => { $('#usersBadge').textContent = fmt(n); };
+  const counted = safeGet('lamsa_counted', false);
+  try{
+    const url = `https://api.counterapi.dev/v1/${NS}/${KEY}/${counted?'':'up'}`;
+    const r = await fetch(url);
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    show(j.count);
+    if(!counted) safeSet('lamsa_counted', true);
+  }catch(e){
+    let n = safeGet('lamsa_local_users', 0);
+    if(!counted){ n++; safeSet('lamsa_local_users', n); safeSet('lamsa_counted', true); }
+    show(Math.max(n,1));
+  }
+})();
+
+/* ===== ANIMATED LAMSA LOGO SVG ===== */
+function logoSVG(k){
+  return `<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LAMSA logo">
+  <defs>
+    <linearGradient id="lamsaGrad1_${k}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00a8ff"/>
+      <stop offset="50%" stop-color="#38c8ff"/>
+      <stop offset="100%" stop-color="#9b4dff"/>
+    </linearGradient>
+    <linearGradient id="bracketGrad_${k}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#9b4dff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- L Logo Main Curve (draws itself, then fills) -->
+  <path class="lamsa-l-path" d="M 65,30 L 65,120 C 65,145 80,155 105,155 L 140,155 C 160,155 170,140 160,120 L 125,120 C 105,120 95,115 95,95 L 95,30 Z"
+        fill="url(#lamsaGrad1_${k})" />
+
+  <!-- Floating Brackets < > -->
+  <g class="lamsa-brackets">
+    <path class="lamsa-br-l" d="M 140,60 L 120,75 L 140,90" fill="none" stroke="url(#bracketGrad_${k})" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+    <path class="lamsa-br-r" d="M 175,60 L 195,75 L 175,90" fill="none" stroke="url(#bracketGrad_${k})" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>`;
+}
+document.querySelectorAll('.logo-slot').forEach((el,i)=>{ el.innerHTML = logoSVG(i); });
+
+/* ===== OWNER PANEL ===== */
+const OWNER_PIN = "1587";
+const DEFAULT_CONFIG = {
+  whatsapp: "201148592380",
+  heroText: "",
+  hidden: {services:false, team:false, projects:false, order:false, reviews:false, contact:false},
+  projects: [
+    {title:"TrkyaTech", desc:"موقع وتقنية برمجية بستايل متطور ومتجاوب.", url:"https://trkya22222-tech.github.io/trkyatech.-github.-io/"},
+    {title:"Logy Art", desc:"موقع معارض وفنون بستايل وتصميم عصري.", url:"https://a07534611-art.github.io/logy/"},
+    {title:"حاسبة العمر", desc:"تطبيق ويب لتحديد وحساب العمر بدقة تفاعلية.", url:"https://a07534611-art.github.io/my-age-/"},
+    {title:"مشروع H.B.T", desc:"تطبيق وتصميم ويب فريد متجاوب.", url:"https://a01063ahmed-creator.github.io/H.-B.-T/"},
+    {title:"مشروع Hema", desc:"موقع ويب متكامل بواجهة تفاعلية ممتازة.", url:"https://a01063ahmed-creator.github.io/Hema/"}
+  ]
+};
+const SECTION_NAMES = {services:'الخدمات', team:'فريق العمل', projects:'الأعمال', order:'نموذج الطلب', reviews:'التقييمات', contact:'التواصل'};
+const HERO_DEFAULT = document.querySelector('.hero-text p').textContent;
+function loadCfg(){
+  const o = safeGet('lamsa_cfg', {});
+  const c = Object.assign({}, DEFAULT_CONFIG, o);
+  c.hidden = Object.assign({}, DEFAULT_CONFIG.hidden, o.hidden||{});
+  if(!Array.isArray(c.projects)) c.projects = DEFAULT_CONFIG.projects;
+  return c;
+}
+let CFG = loadCfg();
+function saveCfg(){ safeSet('lamsa_cfg', CFG); applyConfig(); }
+function safeUrl(u){ try{ const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : '#'; }catch(e){ return '#'; } }
+function renderProjects(){
+  $('#projGrid').innerHTML = CFG.projects.map(p=>{
+    const u = safeUrl(p.url);
+    return `<div class="card proj"><div class="frame"><iframe src="${esc(u)}" loading="lazy" title="${esc(p.title)}"></iframe></div>
+      <div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
+      <a class="btn primary" target="_blank" rel="noopener" href="${esc(u)}">زيارة المشروع ↗</a></div></div>`;
+  }).join('') || '<div class="empty">لا توجد مشاريع حالياً</div>';
+}
+function applyConfig(){
+  WHATSAPP_NUMBER = String(CFG.whatsapp||'').replace(/\D/g,'');
+  $('#waContact').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('مرحباً '+BRAND+'، حابب أستفسر عن خدماتكم')}`;
+  document.querySelector('.hero-text p').textContent = CFG.heroText || HERO_DEFAULT;
+  Object.keys(SECTION_NAMES).forEach(id=>{
+    const hide = !!CFG.hidden[id];
+    const sec = document.getElementById(id); if(sec) sec.style.display = hide ? 'none' : '';
+    const a = document.querySelector(`#menu a[href="#${id}"]`); if(a) a.parentElement.style.display = hide ? 'none' : '';
+  });
+  renderProjects();
+}
+applyConfig();
+
+const adOv = $('#adOverlay'), adBody = $('#adBody');
+let adFails = 0, adLockUntil = 0, adTab = 'content';
+function adToast(t){ $('#adToast').textContent = t; setTimeout(()=>{ if($('#adToast').textContent===t) $('#adToast').textContent=''; }, 2500); }
+function openAdmin(){ adOv.hidden = false; $('#adLogin').hidden = false; $('#adPanel').hidden = true; $('#adPin').value=''; $('#adErr').textContent=''; setTimeout(()=>$('#adPin').focus(),50); }
+function closeAdmin(){ adOv.hidden = true; $('#adPin').value=''; }
+$('#adminBtn').onclick = openAdmin;
+$('#adClose').onclick = closeAdmin;
+adOv.addEventListener('click', e => { if(e.target===adOv) closeAdmin(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape' && !adOv.hidden) closeAdmin(); });
+$('#adPin').addEventListener('keydown', e => { if(e.key==='Enter') $('#adEnter').click(); });
+$('#adEnter').onclick = () => {
+  const now = Date.now();
+  if(now < adLockUntil){ $('#adErr').textContent = `حاول بعد ${Math.ceil((adLockUntil-now)/1000)} ثانية`; return; }
+  if($('#adPin').value === OWNER_PIN){
+    adFails = 0; $('#adLogin').hidden = true; $('#adPanel').hidden = false; showTab('content');
+  }else{
+    adFails++; $('#adPin').value='';
+    if(adFails>=5){ adLockUntil = now+30000; adFails = 0; $('#adErr').textContent='محاولات كثيرة، انتظر 30 ثانية'; }
+    else $('#adErr').textContent = 'الرمز غير صحيح';
+  }
+};
+$('#adTabs').addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if(b) showTab(b.dataset.tab); });
+
+function showTab(t){
+  adTab = t;
+  document.querySelectorAll('#adTabs button').forEach(b=>b.classList.toggle('on', b.dataset.tab===t));
+  ({content:tabContent, projects:tabProjects, clients:tabClients, reviews:tabReviews, settings:tabSettings})[t]();
+}
+function tabClients(){
+  const list = safeGet('lamsa_clients', []);
+  const rows = list.map((c,i)=>`
+    <div class="ad-row"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap">
+      <div><b>${esc(c.name)}</b><br><small dir="ltr" style="color:var(--mut)">${esc(c.email)}</small><br><small style="color:var(--mut)">${esc(c.date)}</small></div>
+      <button class="btn danger" type="button" data-cd="${i}" style="padding:8px 16px;font-size:.85rem">حذف</button></div></div>`).join('');
+  adBody.innerHTML = `<p class="ad-note">عدد العملاء المسجلين: <b>${list.length}</b></p>` + (rows || '<div class="empty">لا يوجد عملاء بعد</div>') +
+    (list.length ? `<div class="ad-actions"><button class="btn primary" id="clCopy" type="button">📋 نسخ القائمة (CSV)</button><button class="btn danger" id="clClear" type="button">مسح الكل</button></div>` : '');
+  adBody.querySelectorAll('[data-cd]').forEach(b=>b.onclick=()=>{ const l=safeGet('lamsa_clients',[]); l.splice(+b.dataset.cd,1); safeSet('lamsa_clients',l); tabClients(); });
+  const cc = $('#clClear'); if(cc) cc.onclick = () => { if(!confirm('مسح كل العملاء؟')) return; safeSet('lamsa_clients',[]); tabClients(); };
+  const cp = $('#clCopy'); if(cp) cp.onclick = async () => {
+    const csv = 'name,email,date\n' + list.map(c=>[c.name,c.email,c.date].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+    try{ await navigator.clipboard.writeText(csv); adToast('✅ تم النسخ'); }catch(e){ adToast('تعذر النسخ'); }
+  };
+}
+function tabContent(){
+  adBody.innerHTML = `
+    <div class="field"><label>رقم الواتساب (بصيغة دولية بدون +)</label><input id="cfWa" inputmode="numeric" value="${esc(CFG.whatsapp)}"></div>
+    <div class="field"><label>نص التعريف في أول الموقع (اتركه فاضي للنص الافتراضي)</label><textarea id="cfHero" rows="3">${esc(CFG.heroText)}</textarea></div>
+    <div class="field"><label>إظهار / إخفاء الأقسام</label>
+      ${Object.keys(SECTION_NAMES).map(id=>`<label class="ad-chk"><input type="checkbox" data-sec="${id}" ${CFG.hidden[id]?'':'checked'}>${SECTION_NAMES[id]}</label>`).join('')}
+    </div>
+    <div class="ad-actions"><button class="btn primary" id="cfSave" type="button">حفظ التعديلات</button></div>`;
+  $('#cfSave').onclick = () => {
+    const wa = $('#cfWa').value.replace(/\D/g,'');
+    if(wa.length<8 || wa.length>15){ adToast('⚠️ رقم الواتساب غير صحيح'); return; }
+    CFG.whatsapp = wa; CFG.heroText = $('#cfHero').value.trim();
+    document.querySelectorAll('[data-sec]').forEach(c=>{ CFG.hidden[c.dataset.sec] = !c.checked; });
+    saveCfg(); adToast('✅ تم الحفظ');
+  };
+}
+function tabProjects(){
+  const rows = CFG.projects.map((p,i)=>`
+    <div class="ad-row" data-i="${i}">
+      <div class="field"><label>اسم المشروع</label><input class="pt" value="${esc(p.title)}"></div>
+      <div class="field"><label>الرابط</label><input class="pu" dir="ltr" value="${esc(p.url)}"></div>
+      <div class="field"><label>وصف قصير</label><input class="pd" value="${esc(p.desc)}"></div>
+      <button class="btn danger" type="button" data-del="${i}" style="padding:8px 16px;font-size:.85rem">حذف المشروع</button>
+    </div>`).join('') || '<div class="empty">لا توجد مشاريع</div>';
+  adBody.innerHTML = rows + `<div class="ad-actions"><button class="btn" id="pjAdd" type="button">➕ إضافة مشروع</button><button class="btn primary" id="pjSave" type="button">حفظ المشاريع</button></div>`;
+  const collect = () => [...adBody.querySelectorAll('.ad-row')].map(r=>({title:r.querySelector('.pt').value.trim(), url:r.querySelector('.pu').value.trim(), desc:r.querySelector('.pd').value.trim()}));
+  adBody.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{ if(!confirm('حذف هذا المشروع؟')) return; const l=collect(); l.splice(+b.dataset.del,1); CFG.projects=l; saveCfg(); tabProjects(); });
+  $('#pjAdd').onclick = () => { CFG.projects = collect().concat([{title:'مشروع جديد', url:'https://', desc:''}]); tabProjects(); };
+  $('#pjSave').onclick = () => {
+    const l = collect();
+    if(l.some(p=>!p.title || safeUrl(p.url)==='#')){ adToast('⚠️ تأكد من الاسم ورابط يبدأ بـ https://'); return; }
+    CFG.projects = l; saveCfg(); adToast('✅ تم حفظ المشاريع'); tabProjects();
+  };
+}
+function tabReviews(){
+  const list = reviews.map((r,i)=>`
+    <div class="ad-row"><div class="review" style="margin:0;border:0;padding:0;background:none"><div class="h"><b>${esc(r.name)}</b><span class="stars" style="font-size:1rem">${stars(r.stars)}</span></div><p>${esc(r.text)}</p><small>${esc(r.date)}</small></div>
+    <button class="btn danger" type="button" data-rd="${i}" style="padding:8px 16px;font-size:.85rem;margin-top:8px">حذف</button></div>`).join('');
+  adBody.innerHTML = `<p class="ad-note">هنا تظهر التقييمات العامة المشتركة بين كل زوار الموقع.</p>` + (list || '<div class="empty">لا توجد تقييمات</div>') +
+    (reviews.length ? `<div class="ad-actions"><button class="btn danger" id="rvClear" type="button">مسح كل التقييمات العامة</button></div>` : '');
+  adBody.querySelectorAll('[data-rd]').forEach(b=>b.onclick=async ()=>{ const newRev = reviews.filter((_,idx)=>idx!==+b.dataset.rd); await savePublicReviews(newRev); tabReviews(); });
+  const c = $('#rvClear'); if(c) c.onclick = async () => { if(!confirm('مسح كل التقييمات؟')) return; await savePublicReviews([]); tabReviews(); };
+}
+function tabSettings(){
+  adBody.innerHTML = `
+    <p class="ad-note">تعديلاتك بتتحفظ في متصفحك أنت فقط. علشان تظهر لكل الزوار: انسخ الإعدادات واستبدل بها <b>DEFAULT_CONFIG</b> في كود الموقع ثم ارفع الملف من جديد.</p>
+    <div class="field"><label>الإعدادات الحالية</label><textarea id="cfOut" rows="8" dir="ltr" readonly>${esc(JSON.stringify({whatsapp:CFG.whatsapp,heroText:CFG.heroText,hidden:CFG.hidden,projects:CFG.projects},null,2))}</textarea></div>
+    <div class="ad-actions">
+      <button class="btn primary" id="cfCopy" type="button">📋 نسخ الإعدادات</button>
+      <button class="btn danger" id="cfReset" type="button">↺ رجوع للافتراضي</button>
+      <button class="btn" id="cfOut2" type="button">🔒 تسجيل خروج</button>
+    </div>`;
+  $('#cfCopy').onclick = async () => { try{ await navigator.clipboard.writeText($('#cfOut').value); adToast('✅ تم النسخ'); }catch(e){ $('#cfOut').select(); adToast('حدّد النص وانسخه يدوياً'); } };
+  $('#cfReset').onclick = () => { if(!confirm('الرجوع للإعدادات الافتراضية؟')) return; try{ localStorage.removeItem('lamsa_cfg'); }catch(e){} CFG = loadCfg(); applyConfig(); tabSettings(); adToast('تم الرجوع للافتراضي'); };
+  $('#cfOut2').onclick = closeAdmin;
+}
+
+/* ===== LOGIN GATE ===== */
+(function(){
+  const OWNER_PASS = "1212";
+  const enter = who => {
+    try{ localStorage.setItem('lamsa_session', JSON.stringify(who)); }catch(e){}
+    document.documentElement.classList.add('authed');
+  };
+  $('#loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const email = $('#lgEmail').value.trim().toLowerCase(), name = $('#lgName').value.trim();
+    const err = $('#lgErr');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.textContent = 'اكتب بريد إلكتروني صحيح'; return; }
+    if(name.length < 2){ err.textContent = 'اكتب اسمك'; return; }
+    err.textContent = '';
+    const list = safeGet('lamsa_clients', []);
+    const found = list.find(c => c.email === email);
+    if(found){ found.name = name; }
+    else list.push({ email, name, date: new Date().toLocaleString('ar-EG') });
+    safeSet('lamsa_clients', list);
+    enter({ role:'client', email, name });
+  });
+  $('#ownerToggle').onclick = () => {
+    $('#ownerRow').classList.toggle('open');
+    setTimeout(() => $('#ownPass').focus(), 50);
+  };
+  const ownGo = () => {
+    if($('#ownPass').value === OWNER_PASS){ $('#ownErr').textContent = ''; enter({ role:'owner' }); }
+    else { $('#ownErr').textContent = 'الباسورد غير صحيح'; $('#ownPass').value = ''; }
+  };
+  $('#ownEnter').onclick = ownGo;
+  $('#ownPass').addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); ownGo(); } });
+})();
+
+/* ===== THEME ===== */
+function setTheme(mode, save){
+  const light = mode === 'light';
+  if(light) document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme');
+  $('#themeBtn .ti').textContent = light ? '☀️' : '🌙';
+  $('#themeBtn').setAttribute('aria-pressed', String(light));
+  $('#themeBtn').title = light ? 'التحويل للوضع المسائي' : 'التحويل للوضع الصباحي';
+  if(save) try{ localStorage.setItem('lamsa_theme', mode); }catch(e){}
+}
+setTheme(document.documentElement.getAttribute('data-theme')==='light' ? 'light' : 'dark', false);
+$('#themeBtn').onclick = () => setTheme(document.documentElement.getAttribute('data-theme')==='light' ? 'dark' : 'light', true);
+
+/* ===== CLOCK ===== */
+(function(){
+  const t = $('#clockTime'), d = $('#clockDate');
+  const pad = n => String(n).padStart(2,'0');
+  let lastDay = -1;
+  function tick(){
+    const n = new Date(), h = n.getHours();
+    t.textContent = `${pad(h%12||12)}:${pad(n.getMinutes())}:${pad(n.getSeconds())} ${h<12?'ص':'م'}`;
+    if(n.getDate() !== lastDay){
+      lastDay = n.getDate();
+      try{ d.textContent = n.toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'}); }catch(e){ d.textContent = n.toLocaleDateString(); }
+    }
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
